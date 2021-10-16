@@ -2,9 +2,6 @@ package DATA_STRUCTURE;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
 
 /**
  * INTERSECTIO_OF_TWO_ARRAYS
