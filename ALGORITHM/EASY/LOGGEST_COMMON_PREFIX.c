@@ -9,10 +9,9 @@
 #include <math.h>
 
 /**
- * @brief 选取传入的字符串数组中长度最短的一个对所有字符串进行遍历,
- * 每次遍历时如果三个下表地址指向的是同一个字符,则说明是公共的前缀.
- * 如果最短的直到遍历结束也没有出现不同,那么说明最短的就是公共的前缀.
- * 否则只要出现不同,就将当前遍历过的字符串返回.
+ * @brief 选择第一个字符串的长度作为标准值进行遍历，
+ * 根据获得的长度遍历每一个字符串的每一个字符，如果
+ * 第i个字符==第i+1个字符，则将其存入结果中返回。
  * 
  * @param strs 字符数组 
  * @param strsSize 字符数组长度
@@ -21,38 +20,57 @@
 char *longestCommonPrefix(char **strs, int strsSize)
 {
 
-    //定义最长字符
-    int maxLength = 0;
-    fmax(0,1);
+    //获取第一个字符串的字符长度
+    int maxLength = strlen(strs[0]);
+    //结果储存数组
+    char result[maxLength];
 
-    for (int i = 0; i < strsSize; i++)
-    {
-        char *p = NULL;
-        p = *strs++;
-        int tempLength = strlen(p);
-        if (tempLength >= maxLength)
+    /*
+     * 按照'最长长度'遍历所有字符串的字符，
+     * 如果存在i == i+1 则证明为公共头部分.
+     * 在i与i+1的判断中不需要中间值做判断，
+     * 因为如果任意位置出现不一致则不是公共头。
+     */
+    for (int i = 0; i < maxLength; i++)
+    {   
+        result[i] = NULL;
+        //临时中间变量
+        char commonChar;
+        for (int j = 0; j < strsSize; j++)
         {
-            maxLength = tempLength;
+
+            if (j == (strsSize - 1))
+            {
+                break;
+            }
+            if (strs[j][i] == strs[j + 1][i])
+            {
+                commonChar = strs[j][i];
+            }
+            else
+            {
+                commonChar = NULL;
+                break;
+            }
         }
+        result[i] = commonChar;
     }
 
-    for (int i = 0; i < strsSize; i++)
-    {
-        for (size_t i = 0; i < maxLength; i++)
-        {
-            /* code */
-        }
-        
-    }
+    char *s = NULL;
+    s = result;
 
-    printf("%d", maxLength);
-    return "1";
+    return s;
 }
 
 int main()
 {
-    char *strs[] = {"f", "flow", "flight"};
+    char *strs[] = {"flower", "flow", "flight"};
     int strsSize = 3;
-    longestCommonPrefix(strs, strsSize);
+    char *p = NULL;
+    printf("%p", &p);
+    printf("%p", p);
+    p = longestCommonPrefix(strs,strsSize);
+    printf("%c", *p);
+    printf("%c", *p+8);
     return 0;
 }
