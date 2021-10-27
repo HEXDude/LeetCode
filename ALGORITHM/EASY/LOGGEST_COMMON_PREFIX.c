@@ -19,58 +19,68 @@
  */
 char *longestCommonPrefix(char **strs, int strsSize)
 {
-
-    //获取第一个字符串的字符长度
-    int maxLength = strlen(strs[0]);
-    //结果储存数组
-    char result[maxLength];
-
-    /*
-     * 按照'最长长度'遍历所有字符串的字符，
-     * 如果存在i == i+1 则证明为公共头部分.
-     * 在i与i+1的判断中不需要中间值做判断，
-     * 因为如果任意位置出现不一致则不是公共头。
+    /**
+     * 判断字符串数组是否只有一个，是则返回唯一一个字符串
      */
-    for (int i = 0; i < maxLength; i++)
-    {   
-        result[i] = NULL;
-        //临时中间变量
-        char commonChar;
-        for (int j = 0; j < strsSize; j++)
-        {
+    if (strsSize == 1)
+    {
+        return strs[0];
+    }
 
-            if (j == (strsSize - 1))
+    /**
+     * 获取字符串数组中长度最短的字符串的长度值
+     * 作为遍历游标
+     */
+    int shortestLength = 0;
+    for (int i = 0; i < strsSize; i++)
+    {
+        if (strlen(strs[i]) == 0)
+        {
+            return "";
+        }
+
+        if (i == 0)
+        {
+            shortestLength = strlen(strs[i]);
+        }
+        else
+        {
+            if (shortestLength >= strlen(strs[i]))
             {
-                break;
+                shortestLength = strlen(strs[i]);
             }
+        }
+    }
+
+    //申请一块连续的char类型存储空间，大小为最短字符长度，用来存储结果
+    char *result = (char *)malloc(sizeof(char) * shortestLength);
+
+    for (int i = 0; i < shortestLength ; i++)
+    {
+        char commonChar = '\0';
+        for (int j = 0; j < strsSize - 1; j++)
+        {
             if (strs[j][i] == strs[j + 1][i])
             {
-                commonChar = strs[j][i];
+                commonChar = strs[j + 1][i];
             }
             else
             {
-                commonChar = NULL;
+                commonChar = '\0';
                 break;
             }
         }
         result[i] = commonChar;
     }
-
-    char *s = NULL;
-    s = result;
-
-    return s;
+    return result;
 }
 
 int main()
 {
-    char *strs[] = {"flower", "flow", "flight"};
-    int strsSize = 3;
+    char *strs[] = {"ab", "a"};
+    int strsSize = 2;
     char *p = NULL;
-    printf("%p", &p);
-    printf("%p", p);
-    p = longestCommonPrefix(strs,strsSize);
-    printf("%c", *p);
-    printf("%c", *p+8);
+    p = longestCommonPrefix(strs, strsSize);
+    printf("%s\n", p);
     return 0;
 }
