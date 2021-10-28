@@ -53,7 +53,8 @@ char *longestCommonPrefix(char **strs, int strsSize)
     }
 
     //申请一块连续的char类型存储空间，大小为最短字符长度，用来存储结果
-    char *result = (char *)malloc(sizeof(char) * shortestLength);
+    // char *result = (char *)malloc(sizeof(char) * shortestLength);
+    char *result = calloc(shortestLength + 1, sizeof(char));
 
     for (int i = 0; i < shortestLength ; i++)
     {
