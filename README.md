@@ -1,4 +1,4 @@
-# LeetCode
-力扣刷题
+使用C语言编写LeetCode算法，只在周末提交，正常情况下(简单==2+ || (中等||困难 == 1+))
 
-### C语言基础太薄弱，导致刷题总是被语言所困扰。故暂停使用C语言刷题，直到阅读《C Primer Plus》并后再继续刷题！
+Due to promote myself,I'd like to solve LeetCode in C and commit on every weekend.
+The plan is (simple 2+ || (medium||hard 1+))
