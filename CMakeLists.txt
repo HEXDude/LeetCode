@@ -3,3 +3,4 @@ project(LeetCode C)
 
 set(CMAKE_C_STANDARD 99)
 
+add_executable(Two-Sum Algorithms/Two-Sum.c)
