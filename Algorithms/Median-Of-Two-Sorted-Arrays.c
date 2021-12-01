@@ -4,40 +4,69 @@
  * @Description: 寻找两个正序数组的中位数
  * @Reference: https://leetcode-cn.com/problems/median-of-two-sorted-arrays/
  * @Conclusion:
- * TODO 未完成
+ * TODO 结果类型不够精确
  */
 
 /**
 * Local part
 */
 #include <stdio.h>
+#include <malloc.h>
+
 double findMedianSortedArrays(int* nums1, int nums1Size, int* nums2, int nums2Size);
 
 int main() {
-    int nums1[5] = {1, 3, 5, 7, 9};
-    int nums2[4] = {2, 4, 6, 8};
-    findMedianSortedArrays(nums1, 5, nums2, 4);
+    int nums1[2] = {1, 2};
+    int nums2[2] = {3, 4};
+    double x = findMedianSortedArrays(nums1, 2, nums2, 2);
 }
 
 /**
 * Submit part
 */
 double findMedianSortedArrays(int* nums1, int nums1Size, int* nums2, int nums2Size){
+    /*
+     * mergedIndex为合并后的数组迭代指示器
+     * maxLength为合并后的数组长度
+     */
+    int mergedIndex = 0, maxLength = nums1Size + nums2Size;
+    /*
+     * 申请一块长度为两个数组的和的int类型地址来储存排序后的元素
+     */
+    double mergedArray[maxLength];
 
-    int mergedArray[nums1Size+nums2Size];
-
-    for (int i = 0; i < nums1Size+nums2Size; ++i) {
-        if (i == nums1Size) {
-            break;
+    /*
+     * 存在任意数组不为空的情况下进行循环
+     * 根据从大到小将元素插入合并数组（排序的方式不影响题目）
+     * 如果在任意一个数组为空且另外一个数组不为空，则将
+     * 另外一个数组按序插入合并数组，因为是倒序且规定两个
+     * 升序的数组，所以不影响
+     */
+    nums1Size-=1,nums2Size-=1;
+    while (nums1Size >= 0 || nums2Size >= 0) {
+        if (nums1Size < 0) {
+            mergedArray[mergedIndex++] = (double )nums2[nums2Size--];
+            continue;
+        } else if (nums2Size < 0) {
+            mergedArray[mergedIndex++] = (double )nums1[nums1Size--];
+            continue;
         }
-        for (int j = 0; j < nums1Size+nums2Size; ++j) {
-            if(j == nums2Size) {
-                break;
-            }
-            if(nums2[j] < nums1[i]) {
-                mergedArray[j]
-            }
+        if (nums1[nums1Size] >= nums2[nums2Size]) {
+            mergedArray[mergedIndex++] = (double )nums1[nums1Size--];
+        } else {
+            mergedArray[mergedIndex++] = (double )nums2[nums2Size--];
         }
     }
-    return 0;
+
+    /*
+     * 如果两个数组的长度为偶数，则中间数即为arr[(m+n)/2-1]与arr[(m+n)/2+1]的平均数
+     * 奇数则为中间那个数
+     */
+    if (maxLength%2==0) {
+        double result = (mergedArray[maxLength/2-1] + mergedArray[maxLength/2+1])/2.0000;
+        return result;
+    } else {
+        double result = (double )mergedArray[maxLength/2];
+        return result;
+    }
 }
