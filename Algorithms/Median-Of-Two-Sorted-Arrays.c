@@ -3,8 +3,8 @@
  * @Date: 2021/11/30
  * @Description: 寻找两个正序数组的中位数
  * @Reference: https://leetcode-cn.com/problems/median-of-two-sorted-arrays/
- * @Conclusion:
- * TODO 结果类型不够精确
+ * @Conclusion: 这题的解法不知道有没有达到要求的O(log(m+n))，但是应该达到了O(m+n)，先
+ * 归并排序两个升序数组后获取中位数
  */
 
 /**
@@ -16,8 +16,8 @@
 double findMedianSortedArrays(int* nums1, int nums1Size, int* nums2, int nums2Size);
 
 int main() {
-    int nums1[2] = {1, 2};
-    int nums2[2] = {3, 4};
+    int nums1[0] = {};
+    int nums2[1] = {1};
     double x = findMedianSortedArrays(nums1, 2, nums2, 2);
 }
 
@@ -63,7 +63,7 @@ double findMedianSortedArrays(int* nums1, int nums1Size, int* nums2, int nums2Si
      * 奇数则为中间那个数
      */
     if (maxLength%2==0) {
-        double result = (mergedArray[maxLength/2-1] + mergedArray[maxLength/2+1])/2.0000;
+        double result = (mergedArray[maxLength/2-1] + mergedArray[maxLength/2])/2.0000;
         return result;
     } else {
         double result = (double )mergedArray[maxLength/2];
