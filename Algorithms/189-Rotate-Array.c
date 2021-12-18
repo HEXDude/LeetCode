@@ -11,10 +11,12 @@
  */
 #include <stdio.h>
 void rotate(int* nums, int numsSize, int k);
+void rotatePlus(int* nums, int numsSize, int k);
 
 int main() {
     int nums[7] = {1, 2, 3, 4, 5, 6, 7}, numsSize = 7, k = 3;
     rotate(nums, numsSize, k);
+    rotatePlus(nums, numsSize, k);
 }
 
 /**
@@ -23,9 +25,10 @@ int main() {
 void rotate(int* nums, int numsSize, int k){
     int result[numsSize];
     for (int i = 0; i < numsSize; ++i) {
-        result[(i+k)%n] = nums[i];
+        result[(i+k)%numsSize] = nums[i];
     }
     for (int i = 0; i < numsSize; ++i) {
-        printf("%d", result[i])
+        printf("%d", result[i]);
     }
 }
+
