@@ -13,5 +13,6 @@ add_executable(Two-Sum-II-Input-Array-Is-Sorted Algorithms/167-Two-Sum-II-Input-
 add_executable(Rotate-Array Algorithms/189-Rotate-Array.c)
 add_executable(First-Bad-Version Algorithms/278-First-Bad-Version.c)
 add_executable(Move-Zeros Algorithms/283-Move-Zeros.c)
+add_executable(Reverse-String Algorithms/344-Reverse-String.c)
 add_executable(Binary-Search Algorithms/704-Binary-Search.c)
 add_executable(Squares-Of-Sorted-Array Algorithms/977-Squares-Of-Sorted-Array.c)
