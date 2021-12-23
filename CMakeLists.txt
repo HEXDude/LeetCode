@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.17.3)
+cmake_minimum_required(VERSION 3.16.3)
 project(LeetCode C)
 
 set(CMAKE_C_STANDARD 99)
@@ -11,5 +11,6 @@ add_executable(Longest-Palindromic-Substring Algorithms/6-Longest-Palindromic-Su
 add_executable(Search-Insert-Position Algorithms/35-Search-Insert-Position.c)
 add_executable(Rotate-Array Algorithms/189-Rotate-Array.c)
 add_executable(First-Bad-Version Algorithms/278-First-Bad-Version.c)
+add_executable(Move-Zeros Algorithms/283-Move-Zeros.c)
 add_executable(Binary-Search Algorithms/704-Binary-Search.c)
 add_executable(Squares-Of-Sorted-Array Algorithms/977-Squares-Of-Sorted-Array.c)
