@@ -9,6 +9,7 @@ add_executable(Longest-Substring-Without-Repeating-Characters Algorithms/3-Longe
 add_executable(Median-Of-Two-Sorted-Arrays Algorithms/5-Median-Of-Two-Sorted-Arrays.c)
 add_executable(Longest-Palindromic-Substring Algorithms/6-Longest-Palindromic-Substring.c)
 add_executable(Search-Insert-Position Algorithms/35-Search-Insert-Position.c)
+add_executable(Two-Sum-II-Input-Array-Is-Sorted Algorithms/167-Two-Sum-II-Input-Array-Is-Sorted.c)
 add_executable(Rotate-Array Algorithms/189-Rotate-Array.c)
 add_executable(First-Bad-Version Algorithms/278-First-Bad-Version.c)
 add_executable(Move-Zeros Algorithms/283-Move-Zeros.c)
