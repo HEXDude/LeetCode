@@ -5,6 +5,7 @@
  * @reference https://leetcode-cn.com/problems/move-zeroes/
  * @conclusion 还是双指针，左指针永远指向数组中第一个出现的0的交换后的位置，而右指针始终迭代向下，
  * 如果遇到非零元素，则将其与左指针元素交换并更新左指针位置。时间复杂度O(n)，空间复杂度O(1)=>数组长度
+ * TODO HEXDude 官解swap区别
  */
 
 /**
@@ -39,3 +40,13 @@ void swap(int * nums, int left, int right) {
     nums[right] = nums[left];
     nums[left] = temp;
 }
+
+/**
+ * Official version
+ * @param a
+ * @param b
+ */
+//void swap(int *a, int *b) {
+//    int t = *a;
+//    *a = *b, *b = t;
+//}
