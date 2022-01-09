@@ -3,13 +3,19 @@
  * @date 2021/12/28
  * @description 给定一个字符串，你需要反转字符串中每个单词的字符顺序，同时仍保留空格和单词的初始顺序。
  * @reference https://leetcode-cn.com/problems/reverse-words-in-a-string-iii/
- * @conclusion Same as the 344
- * TODO HEXDude Need fix
+ * @conclusion Same as the 344，Segment Fault因为指针不可更改。
  */
 //Local Part Start
 //Local Part End
+#include <stdio.h>
 #include <string.h>
 
+char* reverseWords(char* s);
+
+int main() {
+    char * s = "Hello World!";
+    reverseWords(s);
+}
 //Submit Part start
 char* reverseWords(char* s) {
     int length = strlen(s);
