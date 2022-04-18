@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.16.3)
+cmake_minimum_required(VERSION 3.10.2)
 project(LeetCode C)
 
 set(CMAKE_C_STANDARD 99)
@@ -21,3 +21,5 @@ add_executable(Binary-Search Algorithms/704-Binary-Search.c)
 add_executable(Flood-Fill Algorithms/733-Flood-Fill.c)
 add_executable(Middle-Of-The-Linked-List Algorithms/879-Middle-Of-The-Linked-List.c)
 add_executable(Squares-Of-Sorted-Array Algorithms/977-Squares-Of-Sorted-Array.c)
+
+add_executable(Contains-Duplicate DataStructure/Simple/Array/217-Contains-Duplicate.c)
