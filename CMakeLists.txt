@@ -23,3 +23,4 @@ add_executable(Middle-Of-The-Linked-List Algorithms/879-Middle-Of-The-Linked-Lis
 add_executable(Squares-Of-Sorted-Array Algorithms/977-Squares-Of-Sorted-Array.c)
 
 add_executable(Contains-Duplicate DataStructure/Simple/Array/217-Contains-Duplicate.c)
+add_executable(Maximum-Subarray DataStructure/Simple/Array/53-Maximum-Subarray.c)
