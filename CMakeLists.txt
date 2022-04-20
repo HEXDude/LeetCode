@@ -27,3 +27,4 @@ add_executable(Maximum-Subarray DataStructure/Simple/Array/53-Maximum-Subarray.c
 add_executable(Two-Sum-D DataStructure/Simple/Array/1-Two-Sum.c)
 add_executable(Merge-Sorted-Array DataStructure/Simple/Array/88-Merge-Sorted-Array.c)
 add_executable(Intersection-Of-Two-Array-II DataStructure/Simple/Array/350-Intersection-Of-Two-Array-II.c)
+add_executable(Best-Time-To-Buy-And-sell-Stock-D DataStructure/Simple/Array/121-Best-Time-To-Buy-And-sell-Stock.c)
