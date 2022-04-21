@@ -29,3 +29,4 @@ add_executable(Merge-Sorted-Array DataStructure/Simple/Array/88-Merge-Sorted-Arr
 add_executable(Intersection-Of-Two-Array-II DataStructure/Simple/Array/350-Intersection-Of-Two-Array-II.c)
 add_executable(Best-Time-To-Buy-And-sell-Stock-D DataStructure/Simple/Array/121-Best-Time-To-Buy-And-sell-Stock.c)
 add_executable(Reshape-The-Matrix DataStructure/Simple/Array/566-Reshape-The-Matrix.c)
+add_executable(Pascals-Triangle DataStructure/Simple/Array/118-Pascals-Triangle.c)
