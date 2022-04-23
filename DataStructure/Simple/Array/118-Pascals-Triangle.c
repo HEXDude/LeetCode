@@ -1,41 +1,40 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+#include <malloc.h>
+#include <math.h>
+#include <C:\Users\HEXDude\WorkSpace\LeetCode\Library\uthash.h>
+
 /**
  * @author HEXDude
  * @date 2022/4/21
- * @description 在 MATLAB 中，有一个非常有用的函数 reshape ，它可以将一个 m x n 矩阵重塑为另一个大小不同（r x c）的新矩阵，但保留其原始数据。
- * @reference https://leetcode-cn.com/problems/reshape-the-matrix/
- * @conclusion TODO 重做
+ * @description 给定一个非负整数numRows,生成杨辉三角的前numRows行.
+ * 在杨辉三角中,每个数是它左上方和右上方的数的和.
+ * 如果数组中每个元素互不相同,返回false.
+ * @link https://leetcode-cn.com/problems/pascals-triangle/
+ * @conclusion
+ * TODO 无法正确获取入参
  */
-#include <stdlib.h>
-#include <stdio.h>
-#include <malloc.h>
 
-int** generate(int numRows, int* returnSize, int** returnColumnSizes);
+int **generate(int numRows, int *returnSize, int **returnColumnSizes);
 
 int main() {
-	generate(5, NULL, NULL);
+	int *returnSize;
+	int **returnColumnSizes;
+	generate(5, returnSize, returnColumnSizes);
 }
 
-/**
- * Return an array of arrays of size *returnSize.
- * The sizes of the arrays are returned as *returnColumnSizes array.
- * Note: Both returned array and *columnSizes array must be malloced, assume caller calls free().
- */
-int** generate(int numRows, int* returnSize, int** returnColumnSizes){
-	int** result = malloc(sizeof(int *) * numRows);
+int **generate(int numRows, int *returnSize, int **returnColumnSizes) {
+	int **ret = malloc(sizeof(int *) * numRows);
+	*returnSize = numRows;
+	*returnColumnSizes = malloc(sizeof(int) * numRows);
 	for (int i = 0; i < numRows; ++i) {
-		result[i] = malloc(sizeof(int) * numRows);
-	}
-
-	for (int i = 0; i < numRows; ++i) {
-		for (int j = 0; j < numRows; ++j) {
-			printf("%p\r", &(result[i][j]));
+		ret[i] = malloc(sizeof(int) * (i + 1));
+		(*returnColumnSizes)[i] = i + 1;
+		ret[i][0] = ret[i][i] = 1;
+		for (int j = 1; j < i; ++j) {
+			ret[i][j] = ret[i - 1][j] + ret[i - 1][j - 1];
 		}
 	}
-
-	for (int i = 0; i < numRows; ++i) {
-		free(result[i]);
-	}
-	free(result);
-
-	return NULL;
+	return ret;
 }
