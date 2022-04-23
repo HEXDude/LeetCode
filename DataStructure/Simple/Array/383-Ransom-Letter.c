@@ -26,7 +26,7 @@ int main() {
 bool canConstruct(char *ransomNote, char *magazine) {
 	int ransomNoteLength = strlen(ransomNote);
 	int magazineLength = strlen(magazine);
-	if (ransomNoteLength != magazineLength) {
+	if (ransomNoteLength > magazineLength) {
 		return false;
 	}
 
