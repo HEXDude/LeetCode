@@ -10,7 +10,8 @@
  * @date 2022/4/19
  * @description 给定一个整数数组nums和一个整数目标值target,请你在该数组中找出和为目标值target的那两个整数,并返回它们的数组下标.
  * @link https://leetcode-cn.com/problems/two-sum/
- * @conclusion
+ * @conclusion 建立HashMap并遍历数组元素,如果HashMap中存在target-nums[i],则说明此数组存在两数之和解,不存在则将nums[i]的值
+ * 作为key,i作为值存入HashMap中.
  */
 
 /**
