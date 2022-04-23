@@ -32,3 +32,4 @@ add_executable(Reshape-The-Matrix DataStructure/Simple/Array/566-Reshape-The-Mat
 add_executable(Pascals-Triangle DataStructure/Simple/Array/118-Pascals-Triangle.c)
 add_executable(Valid-Sudoku DataStructure/Simple/Array/36-Valid-Sudoku.c)
 add_executable(Set-Matrix-Zeros DataStructure/Simple/Array/73-Set-Matrix-Zeros.c)
+add_executable(First-Unique-Character-In-A-String DataStructure/Simple/Array/217-First-Unique-Character-In-A-String.c)
