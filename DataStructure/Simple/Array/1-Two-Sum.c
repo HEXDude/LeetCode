@@ -1,44 +1,94 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+#include <malloc.h>
+#include <math.h>
+#include <C:\Users\HEXDude\WorkSpace\LeetCode\Library\uthash.h>
+
 /**
  * @author HEXDude
- * @date 2022/1/1
- * @description 给定一个整数数组 nums 和一个整数目标值 target，请你在该数组中找出 和为目标值 target  的那 两个 整数，并返回它们的数组下标。
- * 你可以假设每种输入只会对应一个答案。但是，数组中同一个元素在答案里不能重复出现。
- * 你可以按任意顺序返回答案。
- * @reference https://leetcode-cn.com/problems/two-sum/
- * @conclusion 抄的，手写Hash表太麻烦了
- * TODO 使用高级语言建立HASH表重新实现
+ * @date 2022/4/19
+ * @description 给定一个整数数组nums和一个整数目标值target,请你在该数组中找出和为目标值target的那两个整数,并返回它们的数组下标.
+ * @link https://leetcode-cn.com/problems/two-sum/
+ * @conclusion
  */
-#include <malloc.h>
 
-int* twoSum(int* nums, int numsSize, int target, int* returnSize);
+/**
+ * 第三方HashMap实现
+ */
+struct HashMap {
+	/**
+	 * 键
+	 */
+	int key;
+	/**
+	 * 值
+	 */
+	int value;
+	/**
+	 * 三方Hash工具
+	 */
+	UT_hash_handle hh;
+};
+
+/**
+ * 定义全局HashMap
+ */
+struct HashMap *map = NULL;
+
+struct HashMap *findByKey(int key);
+
+void addOrReplace(int key, int value);
+
+int *twoSum(int *nums, int numsSize, int target, int *returnSize);
 
 int main() {
-    int nums[4] = {2,7,11,15};
-    int numsSize = 4, target = 9;
-    int *returnSize = NULL;
-    int *result = NULL;
+	int nums[4] = {2, 7, 11, 15};
+	int *resultSize = malloc(sizeof(int) * 2);
+	memset(resultSize, 0, sizeof(*resultSize));
+	twoSum(nums, sizeof(nums) / sizeof(int), 9, resultSize);
+}
 
-    result = twoSum(nums, numsSize, target, returnSize);
-    for (int i = 0; i < 2; ++i) {
-        printf("The answer position is %d\n", *(result++));
-    }
-    free(result);
+int *twoSum(int *nums, int numsSize, int target, int *returnSize) {
+	for (int i = 0; i < numsSize; ++i) {
+		struct HashMap *tempMap = findByKey(target - nums[i]);
+		if (tempMap == NULL) {
+			addOrReplace(nums[i], i);
+		} else {
+			int *result = malloc(sizeof(int) * 2);
+			result[0] = i;
+			result[1] = tempMap->value;
+			*returnSize = 2;
+			return result;
+		}
+	}
+
+	HASH_CLEAR(hh, map);
+	*returnSize = 0;
+	return NULL;
 }
 
 /**
- * Note: The returned array must be malloced, assume caller calls free().
+ * 根据Key查询HashMap
  */
-int* twoSum(int* nums, int numsSize, int target, int* returnSize) {
-    for (int i = 0; i < numsSize; ++i) {
-        for (int j = i + 1; j < numsSize; ++j) {
-            if (nums[i] + nums[j] == target) {
-                int* ret = malloc(sizeof(int) * 2);
-                ret[0] = i, ret[1] = j;
-                *returnSize = 2;
-                return ret;
-            }
-        }
-    }
-    *returnSize = 0;
-    return NULL;
+struct HashMap *findByKey(int key) {
+	struct HashMap *tmp;
+	HASH_FIND_INT(map, &key, tmp);
+	return tmp;
+}
+
+/**
+ * 根据key添加键值对
+ * 如果key已存在则修改value
+ */
+void addOrReplace(int key, int value) {
+	struct HashMap *query = findByKey(key);
+	if (query == NULL) {
+		struct HashMap *tmp = malloc(sizeof(struct HashMap));
+		tmp->key = key;
+		tmp->value = value;
+		HASH_ADD_INT(map, key, tmp);
+	} else {
+		query->value = value;
+	}
 }
