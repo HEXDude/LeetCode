@@ -10,7 +10,7 @@
  * @date 2022/4/22
  * @description 给定一个mxn的矩阵,如果一个元素为0,则将其所在行和列的所有元素都设为0.请使用原地算法.
  * @link https://leetcode-cn.com/problems/set-matrix-zeroes/
- * @conclusion
+ * @conclusion 标记矩阵中的为零元素替换,O(m+n)
  */
 
 void setZeroes(int **matrix, int matrixSize, int *matrixColSize);
