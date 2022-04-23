@@ -32,14 +32,14 @@ struct HashSet {
 	UT_hash_handle hh;
 };
 
-bool containsDuplicate(int* nums, int numsSize);
+bool containsDuplicate(int *nums, int numsSize);
 
 int main() {
-    int nums[4] = {1,2,3,1};
-	bool result = containsDuplicate(nums, sizeof(nums)/sizeof(int));
+	int nums[4] = {1, 2, 3, 1};
+	bool result = containsDuplicate(nums, sizeof(nums) / sizeof(int));
 }
 
-bool containsDuplicate(int* nums, int numsSize) {
+bool containsDuplicate(int *nums, int numsSize) {
 	//声明一个键值对均为int型的方法全局HashSet用来存储遍历的数组元素
 	struct HashSet *set = NULL;
 
@@ -56,7 +56,7 @@ bool containsDuplicate(int* nums, int numsSize) {
 		if (tempSet != NULL) {
 			return true;
 		} else {
-			tempSet = malloc(sizeof (*tempSet));
+			tempSet = malloc(sizeof(*tempSet));
 			tempSet->key = nums[i];
 			HASH_ADD_INT(set, key, tempSet);
 		}
