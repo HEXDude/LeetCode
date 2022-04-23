@@ -1,68 +1,68 @@
-/**
- * @author HEXDude
- * @date 2022/1/1
- * @description 给你一个整数数组 nums 。如果任一值在数组中出现 至少两次 ，返回 true ；如果数组中每个元素互不相同，返回 false 。
- * @reference https://leetcode-cn.com/problems/contains-duplicate/
- * @conclusion 最基础的就是双层循环遍历，但是Leetcode会超时，因此必须需要时间复杂度在O(logN)之下的算法。
- * 可想到的有创建一个额外的数组对遍历数据插入，如果同一个位置插入多次，则存在重复。C语言不会实现...
- * TODO O(logN) -> O(n) 使用Hash算法或者动态创建数组插入
- */
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <malloc.h>
+#include <C:\Users\HEXDude\WorkSpace\LeetCode\Library\uthash.h>
 
-bool containsDuplicate_On2(int *nums, int numsSize);
-bool containsDuplicate_OlogN(int *nums, int numsSize);
-int compare(const void* _a, const void* _b);
+/**
+ * @author HEXDude
+ * @date 2022/4/18
+ * @description 给你一个整数数组nums
+ * 如果任一值在数组中出现至少两次,返回true;
+ * 如果数组中每个元素互不相同,返回false.
+ * @link https://leetcode-cn.com/problems/contains-duplicate/
+ * @conclusion 这一天的思路最简单的应该就是暴力破解,但是会导致超时.
+ * 因此可以考虑以下方案:
+ * 1.创建一个int[MAX(nums[i])] answer数组,遍历数组,如果遍历元素i在answer[i]中
+ *   存在定义,那么说明出现了两次.(不现实,数组大小过大,需要memSet和free).
+ * 2.遍历数组元素,建立Hash表,Hash表查找与上面数组法一样且查找复杂度为O(1).
+ */
+
+/**
+ * 第三方HashMap实现
+ */
+struct HashSet {
+	/**
+	 * 键
+	 */
+	int key;
+	/**
+	 * 三方Hash工具
+	 */
+	UT_hash_handle hh;
+};
+
+bool containsDuplicate(int* nums, int numsSize);
 
 int main() {
     int nums[4] = {1,2,3,1};
-    bool resultOn2 = containsDuplicate_On2(nums, 4);
-    bool resultOn = containsDuplicate_OlogN(nums, 4);
-    printf("%d", resultOn2);
-    printf("%d", resultOn);
+	bool result = containsDuplicate(nums, sizeof(nums)/sizeof(int));
 }
 
-/**
- * 双层循环遍历复杂度为O(n^2)
- * @param nums
- * @param numsSize
- * @return bool
- */
-bool containsDuplicate_On2(int *nums, int numsSize) {
-    for (int i = 0; i < numsSize; i++) {
-        for (int j = i+1; j < numsSize; j++) {
-            if (nums[i] == nums[j]) {
-                return true;
-            }
-        }
-    }
-    return false;
-}
+bool containsDuplicate(int* nums, int numsSize) {
+	//声明一个键值对均为int型的方法全局HashSet用来存储遍历的数组元素
+	struct HashSet *set = NULL;
 
-/**
- * 对数组按从大到小排序，可得任意位置如果下一个相邻节点与之相同，则数组存在重复元素，复杂度为O(logN)
- * @param nums
- * @param numsSize
- * @return bool
- */
-bool containsDuplicate_OlogN(int *nums, int numsSize) {
-    qsort(nums, numsSize, sizeof(int), compare);
-    for (int i = 0; i < numsSize - 1; i++) {
-        if (nums[i] == nums[i+1]) {
-            return true;
-        }
-    }
-    return false;
-}
+	/**
+	 * 遍历数组元素
+	 * 每次遍历时声明一个临时的int型的HashSet
+	 * 并以遍历的数组元素作为Key进行查找,如果存在则说明出现了两次,则中断并返回.
+	 * 如果不存在则为声明的临时HashSet开辟内存空间存入全局的HashSet中.
+	 */
+	for (int i = 0; i < numsSize; ++i) {
+		struct HashSet *tempSet;
+		//HashSet的查找时间复杂度均为O(1)
+		HASH_FIND_INT(set, nums + i, tempSet);
+		if (tempSet != NULL) {
+			return true;
+		} else {
+			tempSet = malloc(sizeof (*tempSet));
+			tempSet->key = nums[i];
+			HASH_ADD_INT(set, key, tempSet);
+		}
+	}
 
-/**
- * 快排比较器
- * @param _a
- * @param _b
- * @return int
- */
-int compare(const void* _a, const void* _b) {
-    int a = *(int*)_a, b = *(int*)_b;
-    return a - b;
+	//释放创建的HashMap内存空间
+	HASH_CLEAR(hh, set);
+	return false;
 }
