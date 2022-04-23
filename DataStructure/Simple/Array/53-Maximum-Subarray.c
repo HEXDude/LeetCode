@@ -10,7 +10,8 @@
  * @date 2022/4/18
  * @description 给你一个整数数组nums,请你找出一个具有最大和的连续子数组(子数组最少包含一个元素)，返回其最大和。
  * @link https://leetcode-cn.com/problems/maximum-subarray/
- * @conclusion
+ * @conclusion 可以将算法想象成一个地毯从数组起始位置滚动到结束位置,在滚动时,每当滚动到一个节点时,此时的和大于之前所有的和,
+ * 则取此段为临时最大和,并记录到全局最大值.
  */
 
 int maxSubArray(int *nums, int numsSize);
