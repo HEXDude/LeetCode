@@ -35,3 +35,6 @@ add_executable(Set-Matrix-Zeros DataStructure/Simple/Array/73-Set-Matrix-Zeros.c
 add_executable(First-Unique-Character-In-A-String DataStructure/Simple/Array/217-First-Unique-Character-In-A-String.c)
 add_executable(Ransom-Letter DataStructure/Simple/Array/383-Ransom-Letter.c)
 add_executable(Valid-Anagram DataStructure/Simple/Array/242-Valid-Anagram.c)
+add_executable(Linked-List-Cycle DataStructure/Simple/Array/141-Linked-List-Cycle.c)
+add_executable(Remove-Linked-List-Elements DataStructure/Simple/Array/203-Remove-Linked-List-Elements.c)
+add_executable(Merge-Two-Sorted-Lists DataStructure/Simple/Array/21-Merge-Two-Sorted-Lists.c)
