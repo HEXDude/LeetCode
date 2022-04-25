@@ -39,3 +39,4 @@ add_executable(Linked-List-Cycle DataStructure/Simple/Array/141-Linked-List-Cycl
 add_executable(Remove-Linked-List-Elements DataStructure/Simple/Array/203-Remove-Linked-List-Elements.c)
 add_executable(Merge-Two-Sorted-Lists DataStructure/Simple/Array/21-Merge-Two-Sorted-Lists.c)
 add_executable(Reverse-Linked-List DataStructure/Simple/Array/206-Reverse-Linked-List.c)
+add_executable(Remove-Duplicates-From-Sorted-List DataStructure/Simple/Array/83-Remove-Duplicates-From-Sorted-List.c)
