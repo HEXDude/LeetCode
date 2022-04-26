@@ -42,3 +42,5 @@ add_executable(Remove-Linked-List-Elements DataStructure/Simple/List/203-Remove-
 add_executable(Merge-Two-Sorted-Lists DataStructure/Simple/List/21-Merge-Two-Sorted-Lists.c)
 add_executable(Reverse-Linked-List DataStructure/Simple/List/206-Reverse-Linked-List.c)
 add_executable(Remove-Duplicates-From-Sorted-List DataStructure/Simple/List/83-Remove-Duplicates-From-Sorted-List.c)
+
+add_executable(20-Valid-Parentheses DataStructure/Simple/Stack/20-Valid-Parentheses.c)
