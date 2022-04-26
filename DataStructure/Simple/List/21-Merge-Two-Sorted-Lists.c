@@ -3,7 +3,7 @@
 #include <stdbool.h>
 #include <malloc.h>
 #include <math.h>
-#include <C:\Users\HEXDude\WorkSpace\LeetCode\Library\uthash.h>
+#include "../../../Library/uthash.h"
 
 /**
  * @author HEXDude
