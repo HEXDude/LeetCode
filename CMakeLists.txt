@@ -44,3 +44,4 @@ add_executable(Reverse-Linked-List DataStructure/Simple/List/206-Reverse-Linked-
 add_executable(Remove-Duplicates-From-Sorted-List DataStructure/Simple/List/83-Remove-Duplicates-From-Sorted-List.c)
 
 add_executable(20-Valid-Parentheses DataStructure/Simple/Stack/20-Valid-Parentheses.c)
+add_executable(Implement-Queue-Using-Stacks DataStructure/Simple/Stack/232-Implement-Queue-Using-Stacks.c)
