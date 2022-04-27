@@ -45,3 +45,5 @@ add_executable(Remove-Duplicates-From-Sorted-List DataStructure/Simple/List/83-R
 
 add_executable(20-Valid-Parentheses DataStructure/Simple/Stack/20-Valid-Parentheses.c)
 add_executable(Implement-Queue-Using-Stacks DataStructure/Simple/Stack/232-Implement-Queue-Using-Stacks.c)
+
+add_executable(Binary-Tree-Preorder-Traversal DataStructure/Simple/Tree/144-Binary-Tree-Preorder-Traversal.c)
