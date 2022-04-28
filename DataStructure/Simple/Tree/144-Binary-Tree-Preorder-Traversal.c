@@ -10,7 +10,7 @@
  * @date 2022/4/27
  * @description 二叉树的前序遍历
  * @link https://leetcode-cn.com/problems/binary-tree-preorder-traversal/
- * @conclusion	前序遍历就是根->左->右
+ * @conclusion	前序遍历就是根->左->右,中序就是左->根->右,后序就是左->右->根
  */
 
 /**
