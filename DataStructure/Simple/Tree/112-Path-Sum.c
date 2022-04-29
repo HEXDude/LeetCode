@@ -11,7 +11,8 @@
  * @description 给你二叉树的根节点root和一个表示目标和的整数targetSum.
  * 判断该树中是否存在根节点到叶子节点的路径,这条路径上所有节点值相加等于目标和targetSum.如果存在,返回true;否则,返回false.
  * @link https://leetcode-cn.com/problems/path-sum/
- * @conclusion
+ * @conclusion 对于从根节点遍历,那么每次递归传递的都是sum值,那么应该在递归时对传递的sum值减去之前已经遍历
+ * 过的节点值,当遍历到值相等的情况下,为true,否则为false
  */
 
 /**
@@ -59,8 +60,13 @@ bool hasPathSum(struct TreeNode *root, int sum) {
 	if (root == NULL) {
 		return false;
 	}
+
+	/**
+	 * 此时即为叶子节点
+	 * 当叶子节点的值与值传递下来的sum值一致时,则为true,否则false
+	 */
 	if (root->left == NULL && root->right == NULL) {
-		return sum == root->val;
+		return root->val == sum;
 	}
 	return hasPathSum(root->left, sum - root->val) ||
 	       hasPathSum(root->right, sum - root->val);
