@@ -51,3 +51,4 @@ add_executable(Binary-Tree-level-Order-Traversal DataStructure/Simple/Tree/102-B
 add_executable(Maximum-Depth-Of-Binary-Tree DataStructure/Simple/Tree/104-Maximum-Depth-Of-Binary-Tree.c)
 add_executable(Symmetric-Tree DataStructure/Simple/Tree/101-Symmetric-Tree.c)
 add_executable(Invert-Binary-Tree DataStructure/Simple/Tree/206-Invert-Binary-Tree.c)
+add_executable(Path-Sum DataStructure/Simple/Tree/112-Path-Sum.c)
