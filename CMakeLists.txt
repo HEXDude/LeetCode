@@ -52,3 +52,4 @@ add_executable(Maximum-Depth-Of-Binary-Tree DataStructure/Simple/Tree/104-Maximu
 add_executable(Symmetric-Tree DataStructure/Simple/Tree/101-Symmetric-Tree.c)
 add_executable(Invert-Binary-Tree DataStructure/Simple/Tree/206-Invert-Binary-Tree.c)
 add_executable(Path-Sum DataStructure/Simple/Tree/112-Path-Sum.c)
+add_executable(Search-In-Binary-Search-Tree DataStructure/Simple/Tree/700-Search-In-Binary-Search-Tree.c)
