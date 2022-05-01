@@ -56,3 +56,4 @@ add_executable(Search-In-Binary-Search-Tree DataStructure/Simple/Tree/700-Search
 add_executable(Insert-Into-A-Binary-Search-Tree DataStructure/Simple/Tree/701-Insert-Into-A-Binary-Search-Tree.c)
 add_executable(Validate-Binary-Search-Tree DataStructure/Simple/Tree/98-Validate-Binary-Search-Tree.c)
 add_executable(Two-Sum-IV-Input-Is-A-BST DataStructure/Simple/Tree/653-Two-Sum-IV-Input-Is-A-BST.c)
+add_executable(Lowest-Common-Ancestor-Of-A-Binary-Search-Tree DataStructure/Simple/Tree/235-Lowest-Common-Ancestor-Of-A-Binary-Search-Tree.c)
