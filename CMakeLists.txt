@@ -54,3 +54,4 @@ add_executable(Invert-Binary-Tree DataStructure/Simple/Tree/206-Invert-Binary-Tr
 add_executable(Path-Sum DataStructure/Simple/Tree/112-Path-Sum.c)
 add_executable(Search-In-Binary-Search-Tree DataStructure/Simple/Tree/700-Search-In-Binary-Search-Tree.c)
 add_executable(Insert-Into-A-Binary-Search-Tree DataStructure/Simple/Tree/701-Insert-Into-A-Binary-Search-Tree.c)
+add_executable(Validate-Binary-Search-Tree DataStructure/Simple/Tree/98-Validate-Binary-Search-Tree.c)
