@@ -14,7 +14,6 @@
  * @conclusion 遍历较短元素,将其元素填入HashMap中,值为其在较短数组中的次数,再次遍历较长数组,其遍历元素每在HashMap中出现一次并且
  * value > 0,就将key填入结果数组中,并将Map中的出现次数减一.
  * 减1操作主要是要求按最小次数输出.
- * TODO LeetCode执行堆溢出
  */
 
 /**
@@ -45,55 +44,40 @@ int *intersect(int *nums1, int nums1Size, int *nums2, int nums2Size, int *return
 int main() {
 	int nums1[3] = {3, 1, 2};
 	int nums2[1] = {1};
-	int *returnSize;
+	int returnSize[0];
 	intersect(nums1, 3, nums2, 1, returnSize);
 }
 
-int *intersect(int *nums1, int nums1Size, int *nums2, int nums2Size, int *returnSize) {
+int* intersect(int* nums1, int nums1Size, int* nums2, int nums2Size, int* returnSize) {
 
-	/**
-	 * 取交集运算先取较短数组的值降低时间复杂度
-	 */
-	if (nums1Size > nums2Size) {
-		return intersect(nums2, nums2Size, nums1, nums1Size, returnSize);
-	}
+	//根据题意得出数组中最大的数不超过1000，所以定义一个下标到1001的'Hash'表
+	int table[1001];
+	//将'Hash'表中所有点置为NULL
+	memset(table, NULL, sizeof(table));
+	//交集结果必定小于等于任意一个数组长度
+	int *answer = (int *)malloc(sizeof (int) * nums1Size);
+	//定义循环的遍历Index
+	int nums1Index = 0, nums2Index = 0, answerIndex = 0;
 
-	int *result = malloc(sizeof(int) * nums1Size);
-	memset(result, NULL, sizeof(*result));
-	int resultIndex = 0;
-
-	for (int i = 0; i < nums1Size; ++i) {
-		/**
-		 * 查找HashMap是否存在当前遍历的数组元素
-		 * 如果存在则使其值加一,否则创建值为0
-		 */
-		struct HashMap *tempMap;
-		HASH_FIND_INT(map, nums1 + i, tempMap);
-		if (tempMap == NULL) {
-			tempMap = malloc(sizeof(*tempMap));
-			tempMap->key = nums1[i];
-			tempMap->value = 1;
-			HASH_ADD_INT(map, key, tempMap);
-		} else {
-			tempMap->value += 1;
+	while (nums1Index < nums1Size || nums2Index < nums2Size) {
+		if (nums1Index < nums1Size) {
+			//将Nums1中出现的所有元素按元素值->下标添加到'Hash'表中
+			table[nums1[nums1Index++]] += 1;
+		} else if (nums1Index == nums1Size && nums2Index < nums2Size) {
+			/*
+			 * 遍历Nums2
+			 * 题目中的取出现次数较小数，那么此处的小可以理解为，只要交一次，就保存到结果表中
+			 * 再遇到时不再添加，而是新创建一个节点储存。
+			 */
+			if (table[nums2[nums2Index]] > 0) {
+				answer[answerIndex++] = nums2[nums2Index];
+				table[nums2[nums2Index++]] -= 1;
+			} else {
+				nums2Index++;
+			}
 		}
 	}
 
-	for (int i = 0; i < nums2Size; ++i) {
-		struct HashMap *tempMap;
-		HASH_FIND_INT(map, nums2 + i, tempMap);
-		if (tempMap != NULL && tempMap->value > 0) {
-			result[resultIndex++] = tempMap->key;
-			tempMap->value -= 1;
-		}
-	}
-
-	for (int i = 0; i < resultIndex; ++i) {
-		printf("%d\n", result[i]);
-	}
-
-	returnSize = resultIndex;
-	HASH_CLEAR(hh, map);
-	free(result);
-	return result;
+	*returnSize = answerIndex;
+	return answer;
 }

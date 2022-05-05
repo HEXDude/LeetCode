@@ -13,14 +13,13 @@
  * 如果数组中每个元素互不相同,返回false.
  * @link https://leetcode-cn.com/problems/pascals-triangle/
  * @conclusion
- * TODO 无法正确获取入参
  */
 
 int **generate(int numRows, int *returnSize, int **returnColumnSizes);
 
 int main() {
-	int *returnSize;
-	int **returnColumnSizes;
+	int returnSize[0];
+	int returnColumnSizes[0][0];
 	generate(5, returnSize, returnColumnSizes);
 }
 
