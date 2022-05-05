@@ -59,3 +59,4 @@ add_executable(Two-Sum-IV-Input-Is-A-BST DataStructure/Simple/Tree/653-Two-Sum-I
 add_executable(Lowest-Common-Ancestor-Of-A-Binary-Search-Tree DataStructure/Simple/Tree/235-Lowest-Common-Ancestor-Of-A-Binary-Search-Tree.c)
 
 add_executable(Single-Number DataStructure/Medium/Array/136-Single-Number.c)
+add_executable(Majority-Element DataStructure/Medium/Array/169-Majority-Element.c)
