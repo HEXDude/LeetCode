@@ -60,3 +60,4 @@ add_executable(Lowest-Common-Ancestor-Of-A-Binary-Search-Tree DataStructure/Simp
 
 add_executable(Single-Number DataStructure/Medium/Array/136-Single-Number.c)
 add_executable(Majority-Element DataStructure/Medium/Array/169-Majority-Element.c)
+add_executable(3-Sum DataStructure/Medium/Array/15-3-Sum.c)
