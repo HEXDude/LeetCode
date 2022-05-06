@@ -63,3 +63,4 @@ add_executable(Majority-Element DataStructure/Medium/Array/169-Majority-Element.
 add_executable(3-Sum DataStructure/Medium/Array/15-3-Sum.c)
 add_executable(Sort-Colors DataStructure/Medium/Array/75-Sort-Colors.c)
 add_executable(Design-Hashmap DataStructure/Medium/Array/706-Design-Hashmap.c)
+add_executable(Merge-Intervals DataStructure/Medium/Array/56-Merge-Intervals.c)
