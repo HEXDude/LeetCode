@@ -49,3 +49,4 @@ add_executable(Pascals-Triangle-II DataStructure/Medium/Array/119-Pascals-Triang
 add_executable(Rotate-Image DataStructure/Medium/Array/48-Rotate-Image.c)
 add_executable(Spiral-Matrix-II DataStructure/Medium/Array/59-Spiral-Matrix-II.c)
 add_executable(Search-2D-Matrix-II DataStructure/Medium/Array/240-Search-2D-Matrix-II.c)
+add_executable(Non-Overlapping-Intervals DataStructure/Medium/Array/435-Non-Overlapping-Intervals.c)
