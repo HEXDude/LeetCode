@@ -47,13 +47,12 @@ int main() {
 int subarraySum(int *nums, int numsSize, int k) {
 	int count = 0, pre = 0;
 	struct HashMap *map = NULL;
-	struct HashMap *init = malloc(sizeof(struct HashMap));
-	init->key = 0;
-	init->value = 1;
-	HASH_ADD_INT(map, key, init);
+	struct HashMap *temp = malloc(sizeof(struct HashMap));
+	temp->key = 0;
+	temp->value = 1;
+	HASH_ADD_INT(map, key, temp);
 
 	for (int i = 0; i < numsSize; ++i) {
-		struct HashMap *temp;
 		pre += nums[i];
 		int key = pre - k;
 		HASH_FIND_INT(map, &key, temp);
