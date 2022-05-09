@@ -52,3 +52,4 @@ add_executable(Search-2D-Matrix-II DataStructure/Medium/Array/240-Search-2D-Matr
 add_executable(Non-Overlapping-Intervals DataStructure/Medium/Array/435-Non-Overlapping-Intervals.c)
 add_executable(Increasing-Triplet-Subsequence DataStructure/Medium/Array/334-Increasing-Triplet-Subsequence.c)
 add_executable(Product-Of-Array-Except-Self DataStructure/Medium/Array/238-Product-Of-Array-Except-Self.c)
+add_executable(560-Subarray-Sum-Equals-K DataStructure/Medium/Array/560-Subarray-Sum-Equals-K.c)
