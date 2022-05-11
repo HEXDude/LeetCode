@@ -56,3 +56,4 @@ add_executable(560-Subarray-Sum-Equals-K DataStructure/Medium/Array/560-Subarray
 
 add_executable(Add-Strings DataStructure/Medium/String/415-Add-Strings.c)
 add_executable(Longest-Palindrome DataStructure/Medium/String/409-Longest-Palindrome.c)
+add_executable(Word-Pattern DataStructure/Medium/String/290-Word-Pattern.c)
