@@ -1,9 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
-#include <malloc.h>
-#include <math.h>
-#include "../../../Library/uthash.h"
+#include "../../../Library/header.h"
 
 /**
  * @author HEXDude
