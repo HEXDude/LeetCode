@@ -2,3 +2,10 @@
 
 #忽略在VSCode下调试产生的配置文件
 /.vscode/
+
+#忽略cmake生成的文件
+/build/
+/CMakeFiles/
+CMakeCache.txt
+Makefile
+cmake_install.cmake
