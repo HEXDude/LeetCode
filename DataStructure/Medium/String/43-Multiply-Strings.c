@@ -5,7 +5,7 @@
  * @date 2022/5/12
  * @description 给定两个以字符串形式表示的非负整数 num1 和 num2，返回 num1 和 num2 的乘积，它们的乘积也表示为字符串形式。
  * @link https://leetcode.cn/problems/multiply-strings/
- * @conclusion
+ * @conclusion TODO NOT ACCEPTED
  */
 
 char *addStrings(char *num1, char *num2);
@@ -15,77 +15,101 @@ char *multiply(char *num1, char *num2);
 int main() {
 	// CLion控制台不输出问题,设置缓冲区
 	setbuf(stdout, NULL);
-	char *nums1 = "123";
-	char *nums2 = "456";
+	char *nums1 = "9";
+	char *nums2 = "9";
 	char *result = multiply(nums1, nums2);
 }
 
-char *addStrings(char *num1, char *num2) {
-	int i = strlen(num1) - 1, j = strlen(num2) - 1, add = 0;
-	char *ans = malloc(sizeof(char) * (i + j + 5));
-	int ansLen = 0;
-	while (i >= 0 || j >= 0 || add != 0) {
-		int x = i >= 0 ? num1[i] - '0' : 0;
-		int y = j >= 0 ? num2[j] - '0' : 0;
-		int result = x + y + add;
-		ans[ansLen++] = result % 10;
-		add = result / 10;
-		i--;
-		j--;
-	}
-	for (int i = 0; i < ansLen / 2; i++) {
-		char t = ans[i];
-		ans[i] = ans[ansLen - 1 - i];
-		ans[ansLen - 1 - i] = t;
-	}
-	for (int i = 0; i < ansLen; i++) {
-		ans[i] += '0';
-	}
-	ans[ansLen++] = 0;
-	return ans;
-}
-
 /**
- * 按位相乘,保留进位
- * 每次乘积放入数组中,最后翻转数组
+ * 主题思想是模拟
+ * 通过模拟乘法的竖式计算来不使用类型转换函数得到乘积.
+ * 因此可以将乘数拆开按位与被乘数相乘得到'位乘积'.
+ * 注意乘数的每数据位与被乘数相乘的乘积均需要在乘积后补上相应的零.
+ * 如个位不补,十位补1个,依次类推...
+ * 并且'位乘积'的顺序是相反的.
+ * 最后将若干位乘积结果按位相加即可得到num1与num2的Sting类型结果
  */
 char *multiply(char *num1, char *num2) {
-	int m = strlen(num1), n = strlen(num2);
-	char *ans = malloc(sizeof(char) * 2);
-	ans[0] = '0', ans[1] = 0;
-	if ((m == 1 && num1[0] == '0') || (n == 1 && num2[0] == '0')) {
-		return ans;
+	//如果num1或者num2任意一个为零,直接返回零
+	if (strcmp(num1, "0") == 0 || strcmp(num2, "0") == 0) {
+		return "0";
 	}
-	for (int i = n - 1; i >= 0; i--) {
-		char *curr = malloc(sizeof(char) * (n + m + 5));
-		int currLen = 0;
-		int add = 0;
-		for (int j = n - 1; j > i; j--) {
-			curr[currLen++] = 0;
+
+	int num1Length = strlen(num1), num2Length = strlen(num2);
+	//被乘数与乘数的迭代标识,从个位往上迭代
+	int num1Index = num1Length - 1, num2Index = num2Length - 1;
+
+	//进位标识,每当有进位产生时将进位的值更新到这里
+	int carry = 0;
+
+	//全局的num1与num2的位乘积结果,大小由乘数num2的位数决定 TODO FREE
+	char **globalBitProduct = malloc(sizeof(char *) * num2Length);
+	int globalBitProductIndex = 0;
+
+	char *traverseBitProduct;
+
+
+	while (num1Index >= 0 || num2Index >= 0 || carry != 0) {
+
+		/**
+		 * 当从尾部重新遍历num1的时候,重新初始化临时位乘积容器
+		 * 并补零
+		 */
+		int traverseBitProductIndex;
+		if (num1Index == num1Length - 1 && num2Index >= 0) {
+			traverseBitProduct = malloc(sizeof(char) * 19);
+			traverseBitProductIndex = num2Length - 1 - num2Index;
+			memset(traverseBitProduct, '0', sizeof(traverseBitProductIndex));
 		}
-		int y = num2[i] - '0';
-		for (int j = m - 1; j >= 0; j--) {
-			int x = num1[j] - '0';
-			int product = x * y + add;
-			curr[currLen++] = product % 10;
-			add = product / 10;
+
+		//被乘数
+		int multiplicand = num1Index >= 0 ? num1[num1Index--] - '0' : 0;
+		//乘数
+		int multiplier = num2Index >= 0 ? num2[num2Index] - '0' : 0;
+		//乘积
+		int multiply = (multiplicand * multiplier + carry) % 10;
+		//进位值
+		carry = (multiplicand * multiplier + carry) / 10;
+
+		/**
+		 * 在num1未结束的情况下
+		 */
+		if (num1Index >= -1 && ((multiplicand != 0 && multiplier != 0) || carry != 0)) {
+			traverseBitProduct[traverseBitProductIndex++] = multiply + '0';
+			if (num1Index == -1) {
+				traverseBitProduct[traverseBitProductIndex++] = '\0';
+				globalBitProduct[globalBitProductIndex++] = traverseBitProduct;
+				num1Index = num1Length - 1;
+				num2Index--;
+			}
 		}
-		while (add != 0) {
-			curr[currLen++] = add % 10;
-			add /= 10;
-		}
-		for (int i = 0; i < currLen / 2; i++) {
-			char t = curr[i];
-			curr[i] = curr[currLen - 1 - i];
-			curr[currLen - 1 - i] = t;
-		}
-		for (int i = 0; i < currLen; i++) {
-			curr[i] += '0';
-		}
-		curr[currLen++] = 0;
-		char *tmp = addStrings(ans, curr);
-		free(ans), free(curr);
-		ans = tmp;
 	}
-	return ans;
+
+	/*
+	 * 位乘积结果中长度最大的字符串
+	 */
+	int maxProductLength = strlen(globalBitProduct[globalBitProductIndex - 1]);
+	char *result = malloc(sizeof(char) * 19);
+	int resultColIndex = 0;
+
+	for (int i = 0; i < maxProductLength; ++i) {
+		int colSum = 0;
+		for (int j = 0; j < globalBitProductIndex; ++j) {
+			int tempLength = strlen(globalBitProduct[j]);
+			int number = i >= tempLength ? 0 : globalBitProduct[j][i] - '0' + carry;
+			colSum = colSum + number + carry;
+			carry = colSum / 10;
+			colSum = colSum % 10;
+		}
+		result[resultColIndex++] = colSum + '0';
+	}
+	result[resultColIndex++] = '\0';
+	for (int i = 0; 2 * i < resultColIndex - 1; i++) {
+		int t = result[i];
+		result[i] = result[resultColIndex - i - 1 - 1], result[resultColIndex - i - 1 - 1] = t;
+	}
+	printf("%s\n", result);
+
+	free(globalBitProduct);
+	return result;
 }
