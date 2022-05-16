@@ -61,3 +61,4 @@ add_executable(Partition-Labels DataStructure/Medium/String/763-Partition-Labels
 add_executable(Multiply-Strings DataStructure/Medium/String/43-Multiply-Strings.c)
 
 add_executable(24-Swap-Nodes-In-Pairs DataStructure/Medium/List/24-Swap-Nodes-In-Pairs.c)
+add_executable(Design-Linked-List DataStructure/Medium/List/707-Design-Linked-List.c)
