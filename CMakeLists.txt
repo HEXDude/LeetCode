@@ -59,3 +59,4 @@ add_executable(Longest-Palindrome DataStructure/Medium/String/409-Longest-Palind
 add_executable(Word-Pattern DataStructure/Medium/String/290-Word-Pattern.c)
 add_executable(Partition-Labels DataStructure/Medium/String/763-Partition-Labels.c)
 add_executable(Multiply-Strings DataStructure/Medium/String/43-Multiply-Strings.c)
+add_executable(24-Swap-Nodes-In-Pairs DataStructure/Medium/List/24-Swap-Nodes-In-Pairs.c)
