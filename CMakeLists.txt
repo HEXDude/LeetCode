@@ -62,3 +62,5 @@ add_executable(Multiply-Strings DataStructure/Medium/String/43-Multiply-Strings.
 
 add_executable(24-Swap-Nodes-In-Pairs DataStructure/Medium/List/24-Swap-Nodes-In-Pairs.c)
 add_executable(Design-Linked-List DataStructure/Medium/List/707-Design-Linked-List.c)
+
+add_executable(Serialize-And-Deserialize-Binary-Tree DataStructure/Medium/Tree/297-Serialize-And-Deserialize-Binary-Tree.c)
