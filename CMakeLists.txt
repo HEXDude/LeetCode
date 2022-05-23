@@ -64,3 +64,5 @@ add_executable(24-Swap-Nodes-In-Pairs DataStructure/Medium/List/24-Swap-Nodes-In
 add_executable(Design-Linked-List DataStructure/Medium/List/707-Design-Linked-List.c)
 
 add_executable(Serialize-And-Deserialize-Binary-Tree DataStructure/Medium/Tree/297-Serialize-And-Deserialize-Binary-Tree.c)
+
+add_executable(Find-The-Town-Judge DataStructure/Medium/Graph/997-Find-The-Town-Judge.c)
