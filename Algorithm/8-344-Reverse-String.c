@@ -8,7 +8,7 @@
  * 必须使用原地算法
  */
 
-void reverseString(char *s, int sSize);
+void reverseString(char* s, int sSize);
 
 int main()
 {
@@ -27,23 +27,24 @@ int main()
  * 遍历字符串,当left > right时终止遍历
  * 最终执行运算的次数最少为n/2,故此,时间复杂度为O(n)
  */
-void reverseString(char *s, int sSize)
-{
+void reverseString(char* s, int sSize){
     //处理边界值
     if (sSize <= 1)
     {
         return;
     }
+    
 
     int left = 0, right = sSize - 1;
 
     while (left < right)
     {
         char leftChar = s[left];
-        char rightChar = s[right];
+        char rightChar =  s[right];
         char temp = s[left];
         s[left++] = s[right], s[right--] = temp;
     }
 
     printf("%s", s);
+    
 }
