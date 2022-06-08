@@ -4,32 +4,26 @@
  * @author HEXDude
  * @date 2022-6-5
  * @ref https://leetcode.cn/problems/middle-of-the-linked-list/
- * @breif 给定一个头结点为 head 的非空单链表，返回链表的中间结点。
- * 如果有两个中间结点，则返回第二个中间结点。
+ * @breif 给定一个头结点为 head 的非空单链表,返回链表的中间结点.
+ * 如果有两个中间结点,则返回第二个中间结点.
  */
 
-struct ListNode
-{
+struct ListNode {
     int val;
     struct ListNode *next;
 };
 
 struct ListNode *middleNode(struct ListNode *head);
 
-int main()
-{
+int main() {
     int linkedListLength = 5;
     struct ListNode *header = malloc(sizeof(struct ListNode));
     struct ListNode *headPosition = header;
-    for (int i = 0; i < linkedListLength; i++)
-    {
+    for (int i = 0; i < linkedListLength; i++) {
         header->val = i + 1;
-        if (i == linkedListLength - 1)
-        {
+        if (i == linkedListLength - 1) {
             header->next = NULL;
-        }
-        else
-        {
+        } else {
             header->next = malloc(sizeof(struct ListNode));
         }
         header = header->next;
@@ -48,13 +42,11 @@ int main()
  * 链表的中间部位
  * 直接返回即可
  */
-struct ListNode *middleNode(struct ListNode *head)
-{
+struct ListNode *middleNode(struct ListNode *head) {
     struct ListNode *slow = head;
     struct ListNode *fast = head;
 
-    while (fast != NULL && fast->next != NULL)
-    {
+    while (fast != NULL && fast->next != NULL) {
         slow = slow->next;
         fast = fast->next->next;
     }

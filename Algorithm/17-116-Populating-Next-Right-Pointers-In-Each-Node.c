@@ -6,12 +6,11 @@
  * @ref https://leetcode.cn/problems/populating-next-right-pointers-in-each-node/
  * @breif 将二叉树的每个节点的NEXT指向它同层的右边的第一个节点
  * 定义的二叉树的为完美二叉树
- * 即所有叶子节点都在同一层，每个父节点都有两个子节点
+ * 即所有叶子节点都在同一层,每个父节点都有两个子节点
  * 初始状态NEXT均为NULL;
  */
 
-struct Node
-{
+struct Node {
     int val;
     struct Node *left;
     struct Node *right;
@@ -20,8 +19,7 @@ struct Node
 
 struct Node *connect(struct Node *root);
 
-int main()
-{
+int main() {
     struct Node *root = malloc(sizeof(struct Node));
     root->val = 1;
     root->next = NULL;
@@ -57,24 +55,20 @@ int main()
     free(result);
 }
 
-struct Node *connect(struct Node *root)
-{
-    if (!root)
-    {
+struct Node *connect(struct Node *root) {
+    if (!root) {
         return NULL;
     }
 
     //前序递归树
     //将同一父节点下的两个叶子节点关联
-    if (root->left && root->right)
-    {
+    if (root->left && root->right) {
         root->left->next = root->right;
     }
 
     //如果当前节点父节点存在有意义的NEXT
     //那么将右子节点的NEXT指向父节点的NEXT指向的左子节点
-    if (root->next && root->right)
-    {
+    if (root->next && root->right) {
         root->right->next = root->next->left;
     }
 

@@ -11,16 +11,14 @@
 
 int *twoSum(int *numbers, int numbersSize, int target, int *returnSize);
 
-int main()
-{
+int main() {
     int nums[4] = {2, 7, 11, 15};
     int returnSize = 0;
     int *result = twoSum(nums, 4, 9, &returnSize);
     free(result);
 }
 
-int *twoSum(int *numbers, int numbersSize, int target, int *returnSize)
-{
+int *twoSum(int *numbers, int numbersSize, int target, int *returnSize) {
 
     //每个数组必定有答案,且答案为长度为2的数组
     int *result = malloc(sizeof(int) * 2);
@@ -28,27 +26,23 @@ int *twoSum(int *numbers, int numbersSize, int target, int *returnSize)
 
     int left = 0, right = numbersSize - 1;
 
-    while (left < right)
-    {
+    while (left < right) {
         int sum = numbers[left] + numbers[right];
 
         //如果两个指针指向的元素相加==tareget说明找到了解
-        if (sum == target)
-        {
+        if (sum == target) {
             result[(*returnSize)++] = left + 1;
             result[(*returnSize)++] = right + 1;
             break;
         }
-        //如果和小于target,说明左指针指向的值比较小,应当适度的增大
-        //由于数组是非递减性质,那么向右移动做指针即可
-        else if (sum < target)
-        {
+            //如果和小于target,说明左指针指向的值比较小,应当适度的增大
+            //由于数组是非递减性质,那么向右移动做指针即可
+        else if (sum < target) {
             left++;
         }
-        //如果和大于target,说明右指针指向的值比较大,应当适度的减小
-        //由于数组是非递减性质,那么向左移动做指针即可
-        else
-        {
+            //如果和大于target,说明右指针指向的值比较大,应当适度的减小
+            //由于数组是非递减性质,那么向左移动做指针即可
+        else {
             right--;
         }
     }

@@ -4,31 +4,25 @@
  * @author HEXDude
  * @date 2022-6-5
  * @ref https://leetcode.cn/problems/middle-of-the-linked-list/
- * @breif 给你一个链表，删除链表的倒数第 n 个结点，并且返回链表的头结点。
+ * @breif 给你一个链表,删除链表的倒数第n个结点,并且返回链表的头结点.
  */
 
-struct ListNode
-{
+struct ListNode {
     int val;
     struct ListNode *next;
 };
 
 struct ListNode *removeNthFromEnd(struct ListNode *head, int n);
 
-int main()
-{
+int main() {
     int linkedListLength = 5;
     struct ListNode *header = malloc(sizeof(struct ListNode));
     struct ListNode *headPosition = header;
-    for (int i = 0; i < linkedListLength; i++)
-    {
+    for (int i = 0; i < linkedListLength; i++) {
         header->val = i + 1;
-        if (i == linkedListLength - 1)
-        {
+        if (i == linkedListLength - 1) {
             header->next = NULL;
-        }
-        else
-        {
+        } else {
             header->next = malloc(sizeof(struct ListNode));
         }
         header = header->next;
@@ -46,8 +40,7 @@ int main()
  * 然后slow,fast同步移动,届时,slow指向的就是要删除的
  * 倒数第n个元素
  */
-struct ListNode *removeNthFromEnd(struct ListNode *head, int n)
-{
+struct ListNode *removeNthFromEnd(struct ListNode *head, int n) {
     struct ListNode *top = malloc(sizeof(struct ListNode));
     top->val = NULL;
     top->next = head;
@@ -56,14 +49,12 @@ struct ListNode *removeNthFromEnd(struct ListNode *head, int n)
     struct ListNode *fast = top;
 
     //初始化快指针的位置
-    for (int i = 0; i <= n; i++)
-    {
+    for (int i = 0; i <= n; i++) {
         fast = fast->next;
     }
 
     //同步移动快慢指针,直到快指针指向结束
-    while (fast != NULL && fast->next != NULL)
-    {
+    while (fast != NULL && fast->next != NULL) {
         fast = fast->next;
         slow = slow->next;
     }

@@ -4,12 +4,11 @@
  * @author HEXDude
  * @date 2022-6-8
  * @ref https://leetcode.cn/problems/merge-two-binary-trees/
- * @breif 给你两棵二叉树： root1 和 root2 。
+ * @breif 给你两棵二叉树:root1和root2.
  * 合并两个二叉树,如果重叠的部分则相加,不为null的成为新的节点
  */
 
-struct TreeNode
-{
+struct TreeNode {
     int val;
     struct TreeNode *left;
     struct TreeNode *right;
@@ -17,8 +16,7 @@ struct TreeNode
 
 struct TreeNode *mergeTrees(struct TreeNode *root1, struct TreeNode *root2);
 
-int main()
-{
+int main() {
     struct TreeNode *root1 = malloc(sizeof(struct TreeNode));
     root1->val = 1;
     root1->left = malloc(sizeof(struct TreeNode));
@@ -60,18 +58,15 @@ int main()
  * 作为新节点
  * 递的过程中不断创建新节点,在归的过程中return
  */
-struct TreeNode *mergeTrees(struct TreeNode *root1, struct TreeNode *root2)
-{
+struct TreeNode *mergeTrees(struct TreeNode *root1, struct TreeNode *root2) {
     /**
      * 任意一个节点为空,则返回另一颗树的当前节点
      */
-    if (root1 == NULL)
-    {
+    if (root1 == NULL) {
         return root2;
     }
 
-    if (root2 == NULL)
-    {
+    if (root2 == NULL) {
         return root1;
     }
 

@@ -4,14 +4,15 @@
  * @author HEXDude
  * @date 2022-6-1
  * @ref https://leetcode.cn/problems/binary-search/
- * @breif 给定一个 n 个元素有序的（升序）整型数组 nums 和一个目标值 target  ，写一个函数搜索 nums 中的 target，如果目标值存在返回下标，否则返回 -1。
+ * @breif 给定一个n个元素有序的(升序)整型数组nums和一个目标值target
+ * 写一个函数搜索nums中的target,如果目标值存在返回下标,否则返回-1.
  */
 
 int search(int *nums, int numsSize, int target);
+
 int recursion(int *nums, int left, int right, int target);
 
-int main()
-{
+int main() {
     int nums[6] = {-1, 0, 3, 5, 9, 12};
     int result = search(nums, 6, 9);
 }
@@ -23,8 +24,7 @@ int main()
  * 反之在右侧
  * 本题用递归+二分查找
  */
-int search(int *nums, int numsSize, int target)
-{
+int search(int *nums, int numsSize, int target) {
     return recursion(nums, 0, numsSize - 1, target);
 }
 
@@ -37,11 +37,9 @@ int search(int *nums, int numsSize, int target)
  * @param right 数组终点
  * @param target 目标值
  */
-int recursion(int *nums, int left, int right, int target)
-{
+int recursion(int *nums, int left, int right, int target) {
 
-    if (left > right)
-    {
+    if (left > right) {
         return -1;
     }
 
@@ -50,19 +48,14 @@ int recursion(int *nums, int left, int right, int target)
     //切点的值
     int middleNumber = nums[middleIndex];
 
-    if (middleNumber == target)
-    {
+    if (middleNumber == target) {
         //如果切点的值为目标值,则直接返回
         return middleIndex;
-    }
-    else if (middleNumber > target)
-    {
+    } else if (middleNumber > target) {
         //如果切点的值大于目标值,则将切点位置作为数组终点递归
         //数组起点不变
         return recursion(nums, left, middleIndex - 1, target);
-    }
-    else
-    {
+    } else {
         //如果切点的值小于目标值,则将切点位置作为数组起点递归
         //数组终点不变
         return recursion(nums, middleIndex + 1, right, target);

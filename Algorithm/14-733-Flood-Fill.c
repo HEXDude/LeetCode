@@ -9,17 +9,20 @@
  */
 
 void dfs(int **image, int rowSize, int colSize, int x, int y, int newColor, int oldColor);
-int **floodFill(int **image, int imageSize, int *imageColSize, int sr, int sc, int newColor, int *returnSize, int **returnColumnSizes);
 
-int main()
-{
+int **floodFill(int **image, int imageSize, int *imageColSize, int sr, int sc, int newColor, int *returnSize,
+                int **returnColumnSizes);
+
+int main() {
     int imageSize = 3;
     int imageColSize = 3;
-    int imagePixels[3][3] = {{1, 1, 1}, {1, 1, 0}, {1, 0, 1}};
+    int imagePixels[3][3] = {{1, 1, 1},
+                             {1, 1, 0},
+                             {1, 0, 1}};
     int *image[3] = {imagePixels[0], imagePixels[1], imagePixels[2]};
     int returnSize = 0;
-    int *returnColomnSize[3] = {&returnSize, &returnSize, &returnSize};
-    int **result = floodFill(image, imageSize, &imageColSize, 1, 1, 2, &returnSize, returnColomnSize);
+    int *returnColumnSizes[3] = {&returnSize, &returnSize, &returnSize};
+    int **result = floodFill(image, imageSize, &imageColSize, 1, 1, 2, &returnSize, returnColumnSizes);
 }
 
 /**
@@ -32,21 +35,15 @@ int main()
  * @param newColor 新像素值
  * @param oldColor 初始坐标像素值
  */
-void dfs(int **image, int rowSize, int colSize, int x, int y, int newColor, int oldColor)
-{
+void dfs(int **image, int rowSize, int colSize, int x, int y, int newColor, int oldColor) {
 
-    if (x < 0 || x >= rowSize || y < 0 || y >= colSize)
-    {
+    if (x < 0 || x >= rowSize || y < 0 || y >= colSize) {
         //如果当前递归的坐标超过了矩阵的边界值,则回溯
         return;
-    }
-    else if (image[x][y] != oldColor)
-    {
+    } else if (image[x][y] != oldColor) {
         //如果当前递归的坐标所表示的像素值与初始坐标表示的像素值不一致,则回溯
         return;
-    }
-    else
-    {
+    } else {
         //满足以上所有条件后,将当前递归坐标更新成新像素值并递归的计算其
         //上下左右四个方向的坐标
         image[x][y] = newColor;
@@ -61,13 +58,12 @@ void dfs(int **image, int rowSize, int colSize, int x, int y, int newColor, int 
     }
 }
 
-int **floodFill(int **image, int imageSize, int *imageColSize, int sr, int sc, int newColor, int *returnSize, int **returnColumnSizes)
-{
+int **floodFill(int **image, int imageSize, int *imageColSize, int sr, int sc, int newColor, int *returnSize,
+                int **returnColumnSizes) {
     //初始坐标的颜色
     int oldColor = image[sr][sc];
-    
-    if (oldColor == newColor)
-    {
+
+    if (oldColor == newColor) {
         return image;
     }
 

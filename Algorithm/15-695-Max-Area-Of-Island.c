@@ -11,10 +11,10 @@
  */
 
 int dfs(int **grid, int gridSize, int gridColSize, int x, int y);
+
 int maxAreaOfIsland(int **grid, int gridSize, int *gridColSize);
 
-int main()
-{
+int main() {
     int gridSize = 8;
     int gridColSize = 13;
     int grid[8][13] = {{0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0},
@@ -26,8 +26,7 @@ int main()
                        {0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0},
                        {0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0}};
     int *island[8];
-    for (int i = 0; i < gridSize; i++)
-    {
+    for (int i = 0; i < gridSize; i++) {
         island[i] = grid[i];
     }
     int result = maxAreaOfIsland(island, gridSize, &gridColSize);
@@ -36,10 +35,8 @@ int main()
 /**
  * 深度优先计算面积,将已经递归过的元素置为零避免重复遍历
  */
-int dfs(int **grid, int gridSize, int gridColSize, int x, int y)
-{
-    if (0 > x || x >= gridSize || 0 > y || y >= gridColSize || grid[x][y] == 0)
-    {
+int dfs(int **grid, int gridSize, int gridColSize, int x, int y) {
+    if (0 > x || x >= gridSize || 0 > y || y >= gridColSize || grid[x][y] == 0) {
         return 0;
     }
 
@@ -56,16 +53,12 @@ int dfs(int **grid, int gridSize, int gridColSize, int x, int y)
     return count;
 }
 
-int maxAreaOfIsland(int **grid, int gridSize, int *gridColSize)
-{
+int maxAreaOfIsland(int **grid, int gridSize, int *gridColSize) {
     int answer = 0;
     //遍历grid,如果不是海洋就DFS计算面积
-    for (int i = 0; i < gridSize; i++)
-    {
-        for (int j = 0; j < *gridColSize; j++)
-        {
-            if (grid[i][j])
-            {
+    for (int i = 0; i < gridSize; i++) {
+        for (int j = 0; j < *gridColSize; j++) {
+            if (grid[i][j]) {
                 int x = grid[i][j];
                 answer = fmax(dfs(grid, gridSize, *gridColSize, i, j), answer);
             }

@@ -4,13 +4,12 @@
  * @author HEXDude
  * @date 2022-6-2
  * @ref https://leetcode.cn/problems/squares-of-a-sorted-array/
- * @breif 给你一个按 非递减顺序 排序的整数数组 nums，返回 每个数字的平方 组成的新数组，要求也按 非递减顺序 排序。
+ * @breif 给你一个按非递减顺序排序的整数数组nums,返回每个数字的平方组成的新数组,要求也按非递减顺序 排序.
  */
 
 int *sortedSquares(int *nums, int numsSize, int *returnSize);
 
-int main()
-{
+int main() {
     int nums[5] = {-4, -1, 0, 3, 10};
     int returnSize = 0;
     int *result = sortedSquares(nums, 5, &returnSize);
@@ -28,14 +27,11 @@ int main()
  * 如果左边指针指向的值小于右边的,则将左边的填入结果中并使左边指针向左移动
  * 反之亦然
  */
-int *sortedSquares(int *nums, int numsSize, int *returnSize)
-{
+int *sortedSquares(int *nums, int numsSize, int *returnSize) {
     //找出数组中绝对值最小的那个数的位置,初始为数组的第一个元素
     int lowest = abs(nums[0]), lowestIndex = 0;
-    for (int i = 0; i < numsSize; i++)
-    {
-        if (abs(nums[i]) <= lowest)
-        {
+    for (int i = 0; i < numsSize; i++) {
+        if (abs(nums[i]) <= lowest) {
             lowest = abs(nums[i]);
             lowestIndex = i;
         }
@@ -52,34 +48,25 @@ int *sortedSquares(int *nums, int numsSize, int *returnSize)
     //在最小绝对值两侧设置指针,边界值为0和数组大小
     int toLower = lowestIndex - 1, toBigger = lowestIndex + 1;
 
-    while (toLower >= 0 || toBigger <= numsSize - 1)
-    {
+    while (toLower >= 0 || toBigger <= numsSize - 1) {
         int square;
         //当左边遍历结束时,但右边任然存在元素,并联系数组的性质
         //可以将右边的数组元素平方后按序填入结果中
-        if (toLower < 0 && toBigger <= numsSize - 1)
-        {
+        if (toLower < 0 && toBigger <= numsSize - 1) {
             square = nums[toBigger] * nums[toBigger];
             toBigger++;
-        }
-        else if (toLower >= 0 && toBigger > numsSize - 1)
-        {
+        } else if (toLower >= 0 && toBigger > numsSize - 1) {
             square = nums[toLower] * nums[toLower];
             toLower--;
-        }
-        else if (toLower >= 0 && toBigger <= numsSize - 1)
-        {
+        } else if (toLower >= 0 && toBigger <= numsSize - 1) {
             //如果左边指针指向的值小于右边的,则将左边的填入结果中并使左边指针向左移动
             //反之亦然
             int leftSquare = nums[toLower] * nums[toLower];
             int rightSquare = nums[toBigger] * nums[toBigger];
-            if (leftSquare < rightSquare)
-            {
+            if (leftSquare < rightSquare) {
                 square = leftSquare;
                 toLower--;
-            }
-            else
-            {
+            } else {
                 square = rightSquare;
                 toBigger++;
             }

@@ -8,10 +8,10 @@
  */
 
 int isBadVersion(int version);
+
 int firstBadVersion(int n);
 
-int main()
-{
+int main() {
     int result = firstBadVersion(5);
 }
 
@@ -21,14 +21,10 @@ int main()
  * @return true
  * @return false
  */
-int isBadVersion(int version)
-{
-    if (version == 4)
-    {
+int isBadVersion(int version) {
+    if (version == 4) {
         return true;
-    }
-    else
-    {
+    } else {
         return false;
     }
 }
@@ -46,22 +42,17 @@ int isBadVersion(int version)
  * 如果返回false,则说明该点可能是第一个错误的版本,也可能不是,因此需要继续去右侧查找是否存在
  * 错误的版本,如果不存在,说明该点就是第一个错误的版本
  */
-int firstBadVersion(int n)
-{
+int firstBadVersion(int n) {
     int left = 1, right = n;
     //递归的终止条件为起点大于终点
-    while (left < right)
-    {
+    while (left < right) {
         //中间的版本号,也是index
         int middle = left + (right - left) / 2;
-        if (isBadVersion(middle))
-        {
+        if (isBadVersion(middle)) {
             //如果中间的版本号是正确的,说明错误的版本在切点左侧
             //注意,题干描述为正确的版本之后皆为正确
             right = middle;
-        }
-        else
-        {
+        } else {
             //如果是错误的,说明错误之前可能还有更早的错误的版本
             left = middle + 1;
         }

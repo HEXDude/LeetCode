@@ -4,14 +4,13 @@
  * @author HEXDude
  * @date 2022-6-3
  * @ref https://leetcode.cn/problems/move-zeroes/
- * @breif 给定一个数组 nums，编写一个函数将所有 0 移动到数组的末尾，同时保持非零元素的相对顺序。
- * 请注意 ，必须在不复制数组的情况下原地对数组进行操作。
+ * @breif 给定一个数组 nums,编写一个函数将所有 0 移动到数组的末尾,同时保持非零元素的相对顺序.
+ * 请注意 ,必须在不复制数组的情况下原地对数组进行操作.
  */
 
 void moveZeroes(int *nums, int numsSize);
 
-int main()
-{
+int main() {
     int nums[5] = {0, 1, 0, 3, 12};
     moveZeroes(nums, 5);
 }
@@ -29,28 +28,23 @@ int main()
  * numsSize-left个零
  * 对于题目而言,没有要求地址之类的,所以直接补零就好
  */
-void moveZeroes(int *numss, int numsSize)
-{
+void moveZeroes(int *numss, int numsSize) {
     //处理边界值
-    if (numsSize <= 1)
-    {
+    if (numsSize <= 1) {
         return;
     }
 
     int nums[5] = {0, 1, 0, 3, 12};
     int left = 0, right = 0;
-    while (right < numsSize)
-    {
-        if (nums[right])
-        {
+    while (right < numsSize) {
+        if (nums[right]) {
             nums[left] = nums[right];
             left++;
         }
         right++;
     }
 
-    while (left < numsSize)
-    {
+    while (left < numsSize) {
         nums[left++] = 0;
     }
 }
