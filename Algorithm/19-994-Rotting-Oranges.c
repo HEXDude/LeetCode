@@ -1,7 +1,6 @@
 #include "../Library/header.h"
 
 /**
- * TODO 待处理
  * @author HEXDude
  * @date 2022-6-9
  * @ref https://leetcode.cn/problems/rotting-oranges/
@@ -110,46 +109,66 @@ bool isEmpty(struct Queue *queue) {
     return true;
 }
 
+/**
+ * 找出所有烂橘子与新鲜橘子
+ * 将所有烂橘子入队
+ * 将队列中所有烂橘子取出来,感染上下左右四个方向的新鲜橘子
+ * 并将已感染的新鲜橘子加入队列
+ * 直到队列中不存在烂橘子位置腐烂结束
+ * 如果此时还有新鲜橘子,那么返回-1,否则返回感染时间
+ */
 int orangesRotting(int **grid, int gridSize, int *gridColSize) {
+    //创建队列存放烂橘子
     struct Queue *queue = createQueue();
+    //新鲜橘子数量
     int freshOrangeCount = 0;
-    //找出所有烂橘子并将其加入队列中
+    //遍历矩阵,找出所有的烂橘子和新鲜橘子
     for (int i = 0; i < gridSize; ++i) {
         for (int j = 0; j < *gridColSize; ++j) {
             if (grid[i][j] == 2) {
+                //将烂橘子入队
                 offer(queue, i, j);
+            } else if (grid[i][j] == 1) {
+                //计数新鲜橘子
                 freshOrangeCount++;
             }
         }
     }
 
+    //如果没有新鲜橘子可以被感染
     if (freshOrangeCount == 0) {
         return 0;
     }
 
-    //BFS上下左右四个方向的元素
-    int dx[4] = {1, -1, 0, 0};
+    /*
+     * 将队列中的所有烂橘子拿出同时感染四个方向
+     * 如果感染过程中感染了新鲜橘子
+     * 就将新鲜橘子更新为2,表示已感染,并入队
+     * 同时新鲜橘子数-1
+     */
+    int minute = 0;
+    int dx[4] = {-1, 1, 0, 0};
     int dy[4] = {0, 0, 1, -1};
-
-    int minutes = 0;
-    while (!isEmpty(queue)) {
-        minutes++;
-        //将所有烂橘子出列,同时感染,否则时间重复计算
+    while (!isEmpty(queue) && queue->size > 0) {
+        minute++;
+        //队列中的烂橘子数量,同时感染,否则重复计算时间
         int queueSize = queue->size;
-        for (int j = 0; j < queueSize; ++j) {
+        for (int i = 0; i < queueSize; ++i) {
             struct QNode *position = poll(queue);
-            for (int i = 0; i < 4; ++i) {
-                int newX = position->x + dx[i];
-                int newY = position->y + dy[i];
-                if (newX >= 0 && newX < gridSize && newY >= 0 && newY < *gridColSize && grid[newX][newY] == 1) {
-                    grid[newX][newY] = 2;
-                    offer(queue, newX, newY);
+            for (int j = 0; j < 4; ++j) {
+                //感染的下一个方向
+                int x = position->x + dx[j];
+                int y = position->y + dy[j];
+                if (x >= 0 && x < gridSize && y >= 0 && y < *gridColSize && grid[x][y] == 1) {
+                    //将被感染的橘子入队
+                    offer(queue, x, y);
+                    grid[x][y] = 2;
                     freshOrangeCount--;
                 }
             }
         }
-
     }
 
-    return freshOrangeCount > 0 ? -1 : minutes;
+    //第一次感染不计时,例如只存在单行
+    return freshOrangeCount > 0 ? -1 : --minute;
 }
