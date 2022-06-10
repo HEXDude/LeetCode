@@ -23,3 +23,4 @@ add_executable(17-116-Populating-Next-Right-Pointers-In-Each-Node Algorithm/17-1
 add_executable(18-542-01-Matrix Algorithm/18-542-01-Matrix.c)
 add_executable(19-994-Rotting-Oranges Algorithm/19-994-Rotting-Oranges.c)
 add_executable(20-21-Merge-Two-Sorted-Lists Algorithm/20-21-Merge-Two-Sorted-Lists.c)
+add_executable(21-206-Reverse-Linked-List Algorithm/21-206-Reverse-Linked-List.c)
